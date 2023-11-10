@@ -9,6 +9,20 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
+def read_data(file_path):
+    """
+    Reads data from the given CSV file and returns a pandas DataFrame.
+
+    Parameters:
+    file_path (str): Path to the CSV file.
+
+    Returns:
+    pd.DataFrame: DataFrame containing the data from the CSV file.
+    """
+    data = pd.read_csv(file_path)
+    return data
+
+
 def line_plot(data, title, xlabel, ylabel):
     """
     Show a graph that helps us see how the average delivery time changes with 
@@ -105,12 +119,20 @@ def pie_chart(data, title):
     plt.show()
 
 
-# Read the data from the CSV file
-df = pd.read_csv("deliverytime.csv")
+def main():
+    # path to CSV file
+    file_path = "deliverytime.csv"
 
-# Call functions to generate and display plots
-line_plot(df, 'Delivery time Analysis', 'Age of delivery person',
-          'Delivery time taken(in mins)')
-bar_graph(df, 'No of orders delivered by the type of vehicle',
-          'Type of Vehicle', 'No of orders delivered')
-pie_chart(df, 'Distribution of type of food ordered')
+    # Read the data from the CSV file
+    df = read_data(file_path)
+
+    # Call functions to generate and display plots
+    line_plot(df, 'Delivery time Analysis', 'Age of delivery person',
+              'Delivery time taken(in mins)')
+    bar_graph(df, 'No of orders delivered by the type of vehicle',
+              'Type of Vehicle', 'No of orders delivered')
+    pie_chart(df, 'Distribution of type of food ordered')
+
+
+if __name__ == "__main__":
+    main()
